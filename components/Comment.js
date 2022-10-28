@@ -4,6 +4,7 @@ import Tabs from '@/components/Tabs'
 import { useGlobal } from '@/lib/global'
 import React from 'react'
 import { useRouter } from 'next/router'
+import DisqusComments from '@/components/DisqusComments'
 
 const WalineComponent = dynamic(
   () => {
@@ -56,7 +57,10 @@ const Comment = ({ frontMatter }) => {
         const url = router.asPath.replace('?target=comment', '')
         history.replaceState({}, '', url)
         const commentNode = document.getElementById('comment')
-        commentNode.scrollIntoView({ block: 'start', behavior: 'smooth' })
+        commentNode.scrollIntoView({
+          block: 'start',
+          behavior: 'smooth'
+        })
       }
     }, 200)
   }, [])
@@ -65,22 +69,22 @@ const Comment = ({ frontMatter }) => {
     <div id='comment' className='comment mt-5 text-gray-800 dark:text-gray-300'>
       <Tabs>
 
-        { BLOG.COMMENT_WALINE_SERVER_URL && (<div key='Waline'>
-            <WalineComponent/>
-        </div>) }
+        {BLOG.COMMENT_WALINE_SERVER_URL && (<div key='Waline'>
+          <WalineComponent />
+        </div>)}
 
         {BLOG.COMMENT_VALINE_APP_ID && (<div key='Valine' name='reply'>
-            <ValineComponent path={frontMatter.id}/>
+          <ValineComponent path={frontMatter.id} />
         </div>)}
 
         {BLOG.COMMENT_GISCUS_REPO && (
-          <div key="Giscus">
-            <GiscusComponent isDarkMode={isDarkMode} className="px-2" />
+          <div key='Giscus'>
+            <GiscusComponent isDarkMode={isDarkMode} className='px-2' />
           </div>
         )}
 
         {BLOG.COMMENT_CUSDIS_APP_ID && (<div key='Cusdis'>
-          <CusdisComponent frontMatter={frontMatter}/>
+          <CusdisComponent frontMatter={frontMatter} />
         </div>)}
 
         {BLOG.COMMENT_UTTERRANCES_REPO && (<div key='Utterance'>
@@ -88,8 +92,11 @@ const Comment = ({ frontMatter }) => {
         </div>)}
 
         {BLOG.COMMENT_GITALK_CLIENT_ID && (<div key='GitTalk'>
-          <GitalkComponent frontMatter={frontMatter}/>
+          <GitalkComponent frontMatter={frontMatter} />
         </div>)}
+        {BLOG.COMMENT_DISQUS_ID && <div key='disqus'>
+          <DisqusComments frontMatter={frontMatter} />
+        </div>}
       </Tabs>
     </div>
   )
