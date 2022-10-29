@@ -70,7 +70,7 @@ const SideBar = (props) => {
       data-adtest="on"
       data-ad-format="fluid"
       data-ad-layout-key="-5j+cz+30-f7+bf"
-      data-ad-client="ca-pub-2708419466378217"
+      data-ad-client="ca-pub-4938003046784968"
       data-ad-slot="1510444138"/>
     </section>
 
