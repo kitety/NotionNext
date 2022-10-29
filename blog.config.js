@@ -2,7 +2,7 @@
 const BLOG = {
   AUTHOR: 'kitety', // 作者
   BIO: '独特为佳', // 作者简介
-  LINK: 'https://kitety-blog.vercel.app/', // 网站地址
+  LINK: 'https://www.kitety.life/', // 网站地址
   KEYWORDS: 'Notion, 博客', // 网站关键词 英文逗号隔开
   NOTION_PAGE_ID:
     process.env.NOTION_PAGE_ID || 'e3d485ba8970463e92f1ad45c919dff8', // Important page_id！！！Duplicate Template from  https://www.notion.so/tanghh/02ab3b8678004aa69e9e415905ef32a5
@@ -119,17 +119,21 @@ const BLOG = {
   COMMENT_VALINE_PLACEHOLDER:
     process.env.NEXT_PUBLIC_VALINE_PLACEHOLDER || '抢个沙发吧~', // 可以搭配后台管理评论 https://github.com/DesertsP/Valine-Admin  便于查看评论，以及邮件通知，垃圾评论过滤等功能
 
-  COMMENT_WALINE_SERVER_URL: process.env.NEXT_PUBLIC_WALINE_SERVER_URL || '', // Waline 评论 @see https://waline.js.org/guide/get-started.html
-  COMMENT_WALINE_RECENT: process.env.NEXT_PUBLIC_WALINE_RECENT || false, // 最新评论
+  COMMENT_WALINE_SERVER_URL:
+    process.env.NEXT_PUBLIC_WALINE_SERVER_URL ||
+    'https://waline-data-76rk34lt2-aizaizuori.vercel.app/', // Waline 评论 @see https://waline.js.org/guide/get-started.html
+  COMMENT_WALINE_RECENT: process.env.NEXT_PUBLIC_WALINE_RECENT || true, // 最新评论
 
-  COMMENT_DISQUS_ID: 'Kitety',
+  COMMENT_DISQUS_ID: '',
 
   // 站点统计
   ANALYTICS_BUSUANZI_ENABLE: true, // 展示网站阅读量、访问数 see http://busuanzi.ibruce.info/
   ANALYTICS_BAIDU_ID:
-    process.env.NEXT_PUBLIC_ANALYTICS_BAIDU_ID || '03355ec2c0f36e8ff61c3ff1f137c57a', // e.g 只需要填写百度统计的id，[baidu_id] -> https://hm.baidu.com/hm.js?[baidu_id]
+    process.env.NEXT_PUBLIC_ANALYTICS_BAIDU_ID ||
+    '03355ec2c0f36e8ff61c3ff1f137c57a', // e.g 只需要填写百度统计的id，[baidu_id] -> https://hm.baidu.com/hm.js?[baidu_id]
   ANALYTICS_CNZZ_ID: process.env.NEXT_PUBLIC_ANALYTICS_CNZZ_ID || '', // 只需要填写站长统计的id, [cnzz_id] -> https://s9.cnzz.com/z_stat.php?id=[cnzz_id]&web_id=[cnzz_id]
-  ANALYTICS_GOOGLE_ID: process.env.NEXT_PUBLIC_ANALYTICS_GOOGLE_ID || 'G-VJJD98P863', // 谷歌Analytics的id e.g: G-XXXXXXXXXX
+  ANALYTICS_GOOGLE_ID:
+    process.env.NEXT_PUBLIC_ANALYTICS_GOOGLE_ID || 'G-VJJD98P863', // 谷歌Analytics的id e.g: G-XXXXXXXXXX
 
   ANALYTICS_ACKEE_TRACKER:
     process.env.NEXT_PUBLIC_ANALYTICS_ACKEE_TRACKER || '', // e.g 'https://ackee.tangly1024.net/tracker.js'
