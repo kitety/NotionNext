@@ -121,7 +121,7 @@ const BLOG = {
 
   COMMENT_WALINE_SERVER_URL:
     process.env.NEXT_PUBLIC_WALINE_SERVER_URL ||
-    'https://waline-data-76rk34lt2-aizaizuori.vercel.app/', // Waline 评论 @see https://waline.js.org/guide/get-started.html
+    'https://comment.kitety.life', // Waline 评论 @see https://waline.js.org/guide/get-started.html
   COMMENT_WALINE_RECENT: process.env.NEXT_PUBLIC_WALINE_RECENT || true, // 最新评论
 
   COMMENT_DISQUS_ID: '',

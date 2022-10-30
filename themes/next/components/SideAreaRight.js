@@ -19,44 +19,54 @@ import BLOG from '@/blog.config'
  * @returns {JSX.Element}
  * @constructor
  */
-const SideAreaRight = (props) => {
+const SideAreaRight = props => {
   const { tags, currentTag, slot, categories, currentCategory } = props
   const { locale } = useGlobal()
   const router = useRouter()
-  return (<aside id='right' className='hidden 2xl:block flex-col w-60 ml-4'>
-
-      {CONFIG_NEXT.RIGHT_AD && <Card className='mb-2'>
-        {/* 展示广告  */}
-        <ins
-          className='adsbygoogle'
-          style={{ display: 'block' }}
-          data-adtest='on'
-          data-ad-client='ca-pub-4938003046784968'
-          data-ad-slot='8807314373'
-          data-ad-format='auto'
-          data-full-width-responsive='true'
-        />
-      </Card>}
+  return (
+    <aside id="right" className="hidden 2xl:block flex-col w-60 ml-4">
+      {CONFIG_NEXT.RIGHT_AD && (
+        <Card className="mb-2">
+          {/* 展示广告  */}
+          <ins
+            className="adsbygoogle"
+            style={{ display: 'block' }}
+            data-adtest="on"
+            data-ad-client="ca-pub-4938003046784968"
+            data-ad-slot="2952470626"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+        </Card>
+      )}
 
       <div className="sticky top-4">
         {slot}
 
         {/* 分类  */}
-        {CONFIG_NEXT.RIGHT_CATEGORY_LIST && router.asPath !== '/category' && categories && (
-          <Card>
-            <div className='text-sm px-2 flex flex-nowrap justify-between font-light'>
-              <div className='pb-2 text-gray-600 dark:text-gray-300'><i className='mr-2 fas fa-th-list' />{locale.COMMON.CATEGORY}</div>
-              <Link href={'/category'} passHref>
-                <a className='text-gray-400 hover:text-black dark:text-gray-400 dark:hover:text-white hover:underline cursor-pointer'>
-                  {locale.COMMON.MORE} <i className='fas fa-angle-right' />
-                </a>
-              </Link>
-            </div>
-            <CategoryGroup currentCategory={currentCategory} categories={categories} />
-          </Card>
-        )}
+        {CONFIG_NEXT.RIGHT_CATEGORY_LIST &&
+          router.asPath !== '/category' &&
+          categories && (
+            <Card>
+              <div className="text-sm px-2 flex flex-nowrap justify-between font-light">
+                <div className="pb-2 text-gray-600 dark:text-gray-300">
+                  <i className="mr-2 fas fa-th-list" />
+                  {locale.COMMON.CATEGORY}
+                </div>
+                <Link href={'/category'} passHref>
+                  <a className="text-gray-400 hover:text-black dark:text-gray-400 dark:hover:text-white hover:underline cursor-pointer">
+                    {locale.COMMON.MORE} <i className="fas fa-angle-right" />
+                  </a>
+                </Link>
+              </div>
+              <CategoryGroup
+                currentCategory={currentCategory}
+                categories={categories}
+              />
+            </Card>
+          )}
 
-         {CONFIG_NEXT.RIGHT_TAG_LIST && router.asPath !== '/tag' && tags && (
+        {CONFIG_NEXT.RIGHT_TAG_LIST && router.asPath !== '/tag' && tags && (
           <Card>
             <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
               <div className="text-gray-600 dark:text-gray-200">
@@ -66,7 +76,7 @@ const SideAreaRight = (props) => {
               <Link href={'/tag'} passHref>
                 <a className="text-gray-400 hover:text-black  dark:hover:text-white hover:underline cursor-pointer">
                   {locale.COMMON.MORE}{' '}
-                  <i className='fas fa-angle-double-right' />
+                  <i className="fas fa-angle-double-right" />
                 </a>
               </Link>
             </div>
@@ -74,9 +84,10 @@ const SideAreaRight = (props) => {
               <TagGroups tags={tags} currentTag={currentTag} />
             </div>
           </Card>
-         )}
+        )}
 
-        {BLOG.COMMENT_WALINE_SERVER_URL && BLOG.COMMENT_WALINE_RECENT && <Card>
+        {BLOG.COMMENT_WALINE_SERVER_URL && BLOG.COMMENT_WALINE_RECENT && (
+          <Card>
             <div className="text-sm pb-1 px-2 flex flex-nowrap justify-between font-light dark:text-gray-200">
               <div className="text-gray-600 dark:text-gray-200">
                 <i className="mr-2 fas fa-tag" />
@@ -84,10 +95,10 @@ const SideAreaRight = (props) => {
               </div>
             </div>
             <div className="px-2 pt-2">
-                <NextRecentComments/>
+              <NextRecentComments />
             </div>
-         </Card>}
-
+          </Card>
+        )}
       </div>
     </aside>
   )
