@@ -12,6 +12,7 @@ body::-webkit-scrollbar {
 body {
   scrollbar-width: thin;
   scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  top: 0 !important;
 }
 body::-webkit-scrollbar-track {
   background: var(--scrollbarBG);
@@ -177,4 +178,43 @@ nav {
   vertical-align: baseline;
   height: 1.25em;
   margin: -0.125em 0.25em;
+}
+
+#google_translate_element {
+  float: right;
+  height: 100%;
+  padding: 0 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+#google_translate_element img {
+  display: inline;
+  margin: auto;
+  max-width: 100%;
+  height: auto;
+}
+/* // google 翻译横条 */
+.skiptranslate iframe {
+  display: none !important;
+}
+#goog-gt-tt {
+  display: none !important;
+}
+/* // https://stackoverflow.com/a/8531408 */
+.goog-tooltip {
+  display: none !important;
+}
+.goog-tooltip:hover {
+  display: none !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+#transEle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

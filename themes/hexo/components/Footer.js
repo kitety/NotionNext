@@ -16,9 +16,7 @@ const Footer = ({ title }) => {
 
   const { data: koto } = useRequest(gitokotoFetch)
   const hitokotoText = koto?.data?.hitokoto
-  console.log('hitokotoText: ', hitokotoText)
-  console.log('koto: ', koto)
-  console.log('jinrishiciText: ', jinrishiciText)
+
   const d = new Date()
   const currentYear = d.getFullYear()
   const copyrightDate = (function () {
