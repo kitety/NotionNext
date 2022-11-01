@@ -63,10 +63,10 @@ const Footer = ({ title }) => {
         <span className="text-xs ">
           Powered by{' '}
           <a
-            href="https://github.com/tangly1024/NotionNext"
+            href="https://github.com/kitety"
             className="underline dark:text-gray-300"
           >
-            NotionNext {BLOG.VERSION}
+            Kitety
           </a>
           .
         </span>
