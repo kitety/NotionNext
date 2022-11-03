@@ -15,6 +15,7 @@ class MyDocument extends Document {
         <Head>
           <link rel='icon' href='/favicon.ico' />
           <link rel='icon' href='/favicon.svg' type='image/svg+xml' />
+          <meta name="baidu-site-verification" content="code-TEhYeaRXTg" />
           { BLOG.CUSTOM_FONT
             ? BLOG.CUSTOM_FONT_URL?.map(fontUrl =>
                 <link href={`${fontUrl}`} key={fontUrl} rel='stylesheet' />)
