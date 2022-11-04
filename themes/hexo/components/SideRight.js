@@ -8,6 +8,9 @@ import { AnalyticsCard } from './AnalyticsCard'
 import CONFIG_HEXO from '../config_hexo'
 import HexoRecentComments from './HexoRecentComments'
 import BLOG from '@/blog.config'
+import { useState } from 'react'
+import { useExternal } from 'ahooks'
+import Card2 from '@/themes/hexo/components/Card'
 
 /**
  * Hexo主题右侧栏
@@ -15,9 +18,22 @@ import BLOG from '@/blog.config'
  * @returns
  */
 export default function SideRight(props) {
+  const [path, setPath] = useState('')
+  useExternal(path)
+  const loadMusic = () => {
+    const p = 'https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js'
+    setPath(p)
+  }
   const {
-    post, currentCategory, categories, latestPosts, tags,
-    currentTag, showCategory, showTag, slot
+    post,
+    currentCategory,
+    categories,
+    latestPosts,
+    tags,
+    currentTag,
+    showCategory,
+    showTag,
+    slot
   } = props
 
   return (
@@ -45,7 +61,14 @@ export default function SideRight(props) {
         <LatestPostsGroup {...props} />
       </Card>}
 
-      {BLOG.COMMENT_WALINE_SERVER_URL && BLOG.COMMENT_WALINE_RECENT && <HexoRecentComments/>}
+      {BLOG.COMMENT_WALINE_SERVER_URL && BLOG.COMMENT_WALINE_RECENT && (
+        <HexoRecentComments />
+      )}
+      {!path && <Card2 onClick={loadMusic}>
+        <div className='cursor-pointer'>
+          <i className="fas fa-music mr-2 cu"></i><span>加载音乐</span>   </div>
+      </Card2>}
+      <meting-js server="netease" type="playlist" id="3778678"> </meting-js>
 
       <div className='sticky top-20'>
         {post && post.toc && post.toc.length > 1 && <Card>

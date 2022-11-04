@@ -1,8 +1,8 @@
-const Card = ({ children, headerSlot, className }) => {
-  return <div className={className}>
+const Card = ({ children, headerSlot, className, onClick = () => { } }) => {
+  return <div className={className} onClick={onClick}>
     <>{headerSlot}</>
     <section className="shadow hover:shadow dark:text-gray-300 border dark:border-black rounded-xl px-2 py-4 bg-white dark:bg-hexo-black-gray lg:duration-100">
-        {children}
+      {children}
     </section>
   </div>
 }
