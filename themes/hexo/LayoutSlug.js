@@ -74,9 +74,10 @@ export const LayoutSlug = props => {
                 data-full-width-responsive="true" />
             </section>
 
-            <ArticleCopyright {...props} />
-            <ArticleRecommend {...props} />
-            <ArticleAdjacent {...props} />
+            {post.type === 'Post' && <ArticleCopyright {...props} /> }
+            {post.type === 'Post' && <ArticleRecommend {...props} /> }
+            {post.type === 'Post' && <ArticleAdjacent {...props} /> }
+
           </article>
 
           <hr className='border-dashed' />
