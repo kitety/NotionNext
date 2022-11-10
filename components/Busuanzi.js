@@ -1,11 +1,9 @@
 import busuanzi from '@/lib/busuanzi'
 import { useRouter } from 'next/router'
-import { useGlobal } from '@/lib/global'
 // import { useRouter } from 'next/router'
 import React from 'react'
 
-export default function Busuanzi () {
-  const { theme } = useGlobal()
+export default function Busuanzi() {
   const router = useRouter()
 
   // 切换文章时更新
@@ -19,11 +17,5 @@ export default function Busuanzi () {
     }
   }, [router.events])
 
-  // 更换主题时更新
-  React.useEffect(() => {
-    if (theme) {
-      busuanzi.fetch()
-    }
-  })
   return null
 }
