@@ -57,7 +57,7 @@ const Footer = ({ title }) => {
           <span className="px-1 busuanzi_value_site_uv"> </span>{' '}
         </span>
         <br />
-        <h1>{title}</h1>
+        <div>{title}</div>
         {jinrishiciText && <p>{jinrishiciText}</p>}
         {hitokotoText && <p>{hitokotoText}</p>}
         <span className="text-xs ">
