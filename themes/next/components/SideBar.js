@@ -86,9 +86,10 @@ const SideBar = props => {
           style={{ display: 'block' }}
           data-adtest="on"
           data-ad-client="ca-pub-4938003046784968"
-          data-ad-slot="2952470626"
-          data-ad-format="auto"
           data-full-width-responsive="true"
+          data-ad-format="fluid"
+          data-ad-layout-key="-i8+4-m-1h+51"
+          data-ad-slot="5403774495"
         />
       </section>
     </aside>

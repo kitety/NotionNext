@@ -33,7 +33,7 @@ const SideAreaRight = props => {
             style={{ display: 'block' }}
             data-adtest="on"
             data-ad-client="ca-pub-4938003046784968"
-            data-ad-slot="2952470626"
+            data-ad-slot="5978489565"
             data-ad-format="auto"
             data-full-width-responsive="true"
           />
