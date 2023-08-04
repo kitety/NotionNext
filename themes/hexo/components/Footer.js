@@ -2,11 +2,13 @@ import React from 'react'
 import BLOG from '@/blog.config'
 import Poetry from './Poetry'
 // import DarkModeButton from '@/components/DarkModeButton'
+import LazyImage from '@/components/LazyImage'
+
 
 const Footer = ({ title }) => {
   const d = new Date()
   const currentYear = d.getFullYear()
-  const copyrightDate = (function() {
+  const copyrightDate = (function () {
     if (Number.isInteger(BLOG.SINCE) && BLOG.SINCE < currentYear) {
       return BLOG.SINCE + '-' + currentYear
     }
@@ -19,16 +21,18 @@ const Footer = ({ title }) => {
     >
       {/* <DarkModeButton/> */}
 
-      <i className='fas fa-copyright' /> {`${copyrightDate}`} <span><i className='mx-1 animate-pulse fas fa-heart'/> <a href={BLOG.LINK} className='underline font-bold  dark:text-gray-300 '>{BLOG.AUTHOR}</a>.<br/>
+      <i className='fas fa-copyright' /> {`${copyrightDate}`} <span><i className='mx-1 animate-pulse fas fa-heart' /> <a href={BLOG.LINK} className='underline font-bold  dark:text-gray-300 '>{BLOG.AUTHOR}</a>.<br />
 
-      {BLOG.BEI_AN && <><i className='fas fa-shield-alt' /> <a href='https://beian.miit.gov.cn/' className='mr-2'>{BLOG.BEI_AN}</a><br/></>}
-      <Poetry />
-      <span className='hidden busuanzi_container_site_pv'>
-            <i className='fas fa-eye'/><span className='px-1 busuanzi_value_site_pv'> </span>  </span>
-      <span className='pl-2 hidden busuanzi_container_site_uv'>
-        <i className='fas fa-users'/> <span className='px-1 busuanzi_value_site_uv'> </span> </span>
+        {BLOG.BEI_AN && <><i className='fas fa-shield-alt' /> <a href='https://beian.miit.gov.cn/' className='mr-2'>{BLOG.BEI_AN}</a><br /></>}
+        <Poetry />
+        <span className='hidden busuanzi_container_site_pv'>
+          <i className='fas fa-eye' /><span className='px-1 busuanzi_value_site_pv'> </span>  </span>
+        <span className='pl-2 hidden busuanzi_container_site_uv'>
+          <i className='fas fa-users' /> <span className='px-1 busuanzi_value_site_uv'> </span> </span>
         <h1 className='text-xs pt-4 text-light-400 dark:text-gray-400'>{title} {BLOG.BIO && <>|</>} {BLOG.BIO}</h1>
-        <p className='text-xs pt-2 text-light-500 dark:text-gray-500'>Powered by <a href='https://github.com/tangly1024/NotionNext' className='dark:text-gray-300'>NotionNext {BLOG.VERSION}</a>.</p></span><br/>
+        <p className='text-xs pt-2 text-light-500 dark:text-gray-500'>Powered by <a href='https://github.com/tangly1024/NotionNext' className='dark:text-gray-300'>NotionNext {BLOG.VERSION}</a>.</p></span><br />
+      {/* flagCounter */}
+      <LazyImage src="https://www.flagcounter.me/dWO/" alt="Flag Counter" className="mx-auto" />
 
     </footer>
   )
