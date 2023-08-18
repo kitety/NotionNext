@@ -1,9 +1,9 @@
-import React from 'react'
 import BLOG from '@/blog.config'
+import Image from 'next/image'
 import Poetry from './Poetry'
+import { useMount } from 'ahooks'
+import { useState } from 'react'
 // import DarkModeButton from '@/components/DarkModeButton'
-import LazyImage from '@/components/LazyImage'
-
 
 const Footer = ({ title }) => {
   const d = new Date()
@@ -14,6 +14,10 @@ const Footer = ({ title }) => {
     }
     return currentYear
   })()
+  const [mounted, setMounted] = useState(false)
+  useMount(() => {
+    setMounted(true)
+  })
 
   return (
     <footer
@@ -32,7 +36,7 @@ const Footer = ({ title }) => {
         <h1 className='text-xs pt-4 text-light-400 dark:text-gray-400'>{title} {BLOG.BIO && <>|</>} {BLOG.BIO}</h1>
         <p className='text-xs pt-2 text-light-500 dark:text-gray-500'>Powered by <a href='https://github.com/tangly1024/NotionNext' className='dark:text-gray-300'>NotionNext {BLOG.VERSION}</a>.</p></span><br />
       {/* flagCounter */}
-      <LazyImage src="https://www.flagcounter.me/dWO/" alt="Flag Counter" className="mx-auto" />
+      {mounted && <img src="https://www.flagcounter.me/dWO/" alt="Flag Counter" className="mx-auto" />}
 
     </footer>
   )
