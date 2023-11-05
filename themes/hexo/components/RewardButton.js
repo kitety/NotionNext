@@ -24,8 +24,8 @@ const RewardButton = () => {
       </div>
 
       <div id='reward-qrcode' className={`flex space-x-10 my-5 px-5 mx-auto py-6 justify-center bg-white dark:bg-black dark:text-gray-200 ${show ? '' : 'hidden'}`}>
-        <div ><img width='150' height='150' src='https://23img.com/i/2023/09/03/ug4utd.png' /></div>
-        <div ><img width='150' height='150' src='https://23img.com/i/2023/09/03/ufhmv1.png' /></div>
+        <div ><img width='150' height='150' src='https://pomf2.lain.la/f/u8ujbnq.png' /></div>
+        <div ><img width='150' height='150' src='https://pomf2.lain.la/f/8d1edv4o.png' /></div>
       </div>
     </div>
   )
