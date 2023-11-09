@@ -220,7 +220,7 @@ const LayoutSlug = props => {
 
                         {/* 分享 */}
                         <ShareBar post={post} />
-                        <RewardButton/>
+                        {/* <RewardButton/> */}
                         {post?.type === 'Post' && <>
                             <ArticleCopyright {...props} />
                             <ArticleRecommend {...props} />
