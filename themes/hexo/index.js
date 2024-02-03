@@ -32,6 +32,7 @@ import { Style } from './style'
 import replaceSearchResult from '@/components/Mark'
 import { siteConfig } from '@/lib/config'
 import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
+import RewardButton from '@/themes/hexo/components/RewardButton'
 
 // 主题全局状态
 const ThemeGlobalHexo = createContext()
@@ -238,6 +239,7 @@ const LayoutSlug = props => {
 
                         {/* 分享 */}
                         <ShareBar post={post} />
+                        <RewardButton />
                         {post?.type === 'Post' && <>
                             <ArticleCopyright {...props} />
                             <ArticleRecommend {...props} />
