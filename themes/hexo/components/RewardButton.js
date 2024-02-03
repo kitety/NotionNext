@@ -35,7 +35,7 @@ const RewardButton = () => {
       >
         <div>
           <img
-            alt={''}
+            alt={'微信打赏'}
             width="150"
             height="150"
             src="https://bafkreiexusdeuujnkrfdqtszww7qxoe2i3gdt25rhrpxk4e7viw7fsrlxe.ipfs.nftstorage.link/"
@@ -43,7 +43,7 @@ const RewardButton = () => {
         </div>
         <div>
           <img
-            alt={''}
+            alt={'支付宝打赏'}
             width="150"
             height="150"
             src="https://bafkreihrhyoc3o4fp5oe4ytipeloyussaeep7bpmcgppbw43crs73xepda.ipfs.nftstorage.link/"
