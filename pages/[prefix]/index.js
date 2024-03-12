@@ -1,15 +1,13 @@
 import BLOG from '@/blog.config'
-import { getPostBlocks } from '@/lib/notion'
-import { getGlobalData } from '@/lib/notion/getNotionData'
+import { getGlobalData, getPostBlocks, getPost } from '@/lib/db/getSiteData'
 import { useEffect, useState } from 'react'
 import { idToUuid } from 'notion-utils'
 import { useRouter } from 'next/router'
-import { getNotion } from '@/lib/notion/getNotion'
 import { getPageTableOfContents } from '@/lib/notion/getPageTableOfContents'
 import { getLayoutByTheme } from '@/themes/theme'
 import md5 from 'js-md5'
-import { checkContainHttp, isBrowser } from '@/lib/utils'
-import { uploadDataToAlgolia } from '@/lib/algolia'
+import { checkContainHttp } from '@/lib/utils'
+import { uploadDataToAlgolia } from '@/lib/plugins/algolia'
 import { siteConfig } from '@/lib/config'
 
 /**
@@ -20,7 +18,6 @@ import { siteConfig } from '@/lib/config'
  */
 const Slug = props => {
   const { post } = props
-  const router = useRouter()
 
   // 文章锁🔐
   const [lock, setLock] = useState(post?.password && post?.password !== '')
@@ -40,20 +37,6 @@ const Slug = props => {
 
   // 文章加载
   useEffect(() => {
-    // 404
-    if (!post) {
-      setTimeout(() => {
-        if (isBrowser) {
-          const article = document.getElementById('notion-article')
-          if (!article) {
-            router.push('/404').then(() => {
-              console.warn('找不到页面', router.asPath)
-            })
-          }
-        }
-      }, 8 * 1000) // 404时长 8秒
-    }
-
     // 文章加密
     if (post?.password && post?.password !== '') {
       setLock(true)
@@ -108,7 +91,7 @@ export async function getStaticProps({ params: { prefix } }) {
   if (!props?.post) {
     const pageId = prefix
     if (pageId.length >= 32) {
-      const post = await getNotion(pageId)
+      const post = await getPost(pageId)
       props.post = post
     }
   }

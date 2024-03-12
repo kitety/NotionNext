@@ -1,38 +1,40 @@
-import CONFIG from './config'
-import { createContext, useContext, useEffect, useRef } from 'react'
-import Footer from './components/Footer'
-import SideRight from './components/SideRight'
-import TopNav from './components/TopNav'
+import Comment from '@/components/Comment'
+import replaceSearchResult from '@/components/Mark'
+import NotionPage from '@/components/NotionPage'
+import ShareBar from '@/components/ShareBar'
+import { siteConfig } from '@/lib/config'
 import { useGlobal } from '@/lib/global'
 import { isBrowser } from '@/lib/utils'
-import BlogPostListPage from './components/BlogPostListPage'
-import BlogPostListScroll from './components/BlogPostListScroll'
-import Hero from './components/Hero'
+import RewardButton from '@/themes/hexo/components/RewardButton'
+import { Transition } from '@headlessui/react'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import Card from './components/Card'
-import RightFloatArea from './components/RightFloatArea'
-import SearchNav from './components/SearchNav'
-import BlogPostArchive from './components/BlogPostArchive'
-import { ArticleLock } from './components/ArticleLock'
-import PostHeader from './components/PostHeader'
-import JumpToCommentButton from './components/JumpToCommentButton'
-import TocDrawer from './components/TocDrawer'
-import TocDrawerButton from './components/TocDrawerButton'
-import Comment from '@/components/Comment'
-import NotionPage from '@/components/NotionPage'
+import { createContext, useContext, useEffect, useRef } from 'react'
 import ArticleAdjacent from './components/ArticleAdjacent'
 import ArticleCopyright from './components/ArticleCopyright'
+import { ArticleLock } from './components/ArticleLock'
 import ArticleRecommend from './components/ArticleRecommend'
-import ShareBar from '@/components/ShareBar'
-import TagItemMini from './components/TagItemMini'
-import Link from 'next/link'
+import BlogPostArchive from './components/BlogPostArchive'
+import BlogPostListPage from './components/BlogPostListPage'
+import BlogPostListScroll from './components/BlogPostListScroll'
+import Card from './components/Card'
+import Footer from './components/Footer'
+import Hero from './components/Hero'
+import JumpToCommentButton from './components/JumpToCommentButton'
+import PostHeader from './components/PostHeader'
+import RightFloatArea from './components/RightFloatArea'
+import SearchNav from './components/SearchNav'
+import SideRight from './components/SideRight'
 import SlotBar from './components/SlotBar'
-import { Transition } from '@headlessui/react'
+import TagItemMini from './components/TagItemMini'
+import TocDrawer from './components/TocDrawer'
+import TocDrawerButton from './components/TocDrawerButton'
+import TopNav from './components/TopNav'
+import CONFIG from './config'
 import { Style } from './style'
-import replaceSearchResult from '@/components/Mark'
-import { siteConfig } from '@/lib/config'
-import AlgoliaSearchModal from '@/components/AlgoliaSearchModal'
-import RewardButton from '@/themes/hexo/components/RewardButton'
+
+const AlgoliaSearchModal = dynamic(() => import('@/components/AlgoliaSearchModal'), { ssr: false })
 
 // 主题全局状态
 const ThemeGlobalHexo = createContext()
@@ -74,7 +76,7 @@ const LayoutBase = props => {
 
   return (
     <ThemeGlobalHexo.Provider value={{ searchModal }}>
-        <div id='theme-hexo'>
+        <div id='theme-hexo' className={`${siteConfig('FONT_STYLE')} dark:bg-black scroll-smooth`}>
             <Style/>
 
             {/* 顶部导航 */}
@@ -223,7 +225,22 @@ const LayoutArchive = (props) => {
  */
 const LayoutSlug = props => {
   const { post, lock, validPassword } = props
-
+  const router = useRouter()
+  useEffect(() => {
+    // 404
+    if (!post) {
+      setTimeout(() => {
+        if (isBrowser) {
+          const article = document.getElementById('notion-article')
+          if (!article) {
+            router.push('/404').then(() => {
+              console.warn('找不到页面', router.asPath)
+            })
+          }
+        }
+      }, siteConfig('POST_WAITING_TIME_FOR_404') * 1000)
+    }
+  }, [post])
   return (
         <>
             <div className="w-full lg:hover:shadow lg:border rounded-t-xl lg:rounded-xl lg:px-2 lg:py-4 bg-white dark:bg-hexo-black-gray dark:border-black article">
@@ -352,14 +369,6 @@ const LayoutTagIndex = props => {
 }
 
 export {
-  CONFIG as THEME_CONFIG,
-  LayoutBase,
-  LayoutIndex,
-  LayoutSearch,
-  LayoutArchive,
-  LayoutSlug,
-  Layout404,
-  LayoutCategoryIndex,
-  LayoutPostList,
-  LayoutTagIndex
+  Layout404, LayoutArchive, LayoutBase, LayoutCategoryIndex, LayoutIndex, LayoutPostList, LayoutSearch, LayoutSlug, LayoutTagIndex, CONFIG as THEME_CONFIG
 }
+
