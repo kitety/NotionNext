@@ -1,32 +1,22 @@
-import { useMount, useReactive, useRequest } from 'ahooks'
+import { useRequest } from 'ahooks'
 import axios from 'axios'
-import * as jinrishici from 'jinrishici'
 
+const jinRiShiCiFetch = () =>
+  axios.get(
+    'https://v2.jinrishici.com/one.json?client=browser-sdk/1.2&X-User-Token=ztizwYq6nONeaj2JDYBlz%2B5SLbb3Jlcq'
+  )
 const hiToKoToFetch = () => axios.get('https://v1.hitokoto.cn')
 
 const Poetry = () => {
-  const state = useReactive({
-    shici: ''
-  })
+  const { data } = useRequest(jinRiShiCiFetch)
+  const jinRiShiCiText = data?.data?.data?.content
 
   const { data: koto } = useRequest(hiToKoToFetch)
   const hiToKoToText = koto?.data?.hitokoto
-  useMount(() => {
-    jinrishici.load(
-      result => {
-        state.shici = result?.data?.content || ''
-      },
-      errData => {
-        console.log(errData)
-      }
-    )
-  })
 
-  return (
-    <>
-      {state.shici && <p>{state.shici}</p>}
-      {hiToKoToText && <p>{hiToKoToText}</p>}
-    </>
-  )
+  return <>
+    {jinRiShiCiText && <p>{jinRiShiCiText}</p>}
+    {hiToKoToText && <p>{hiToKoToText}</p>}
+  </>
 }
 export default Poetry
