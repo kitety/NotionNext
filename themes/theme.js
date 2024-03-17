@@ -111,6 +111,7 @@ export const initDarkMode = (updateDarkMode,defaultDarkMode) => {
     newDarkMode = queryMode === 'dark'
   }
 
+  newDarkMode = typeof newDarkMode === 'string' ? newDarkMode === 'dark' : newDarkMode
   updateDarkMode(newDarkMode)
   saveDarkModeToLocalStorage(newDarkMode)
   document.getElementsByTagName('html')[0].setAttribute('class', newDarkMode ? 'dark' : 'light')
