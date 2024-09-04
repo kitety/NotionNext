@@ -7,7 +7,6 @@ import { useGlobal } from '@/lib/global'
 import { isBrowser } from '@/lib/utils'
 import { Transition } from '@headlessui/react'
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useRef } from 'react'
 import ArticleAdjacent from './components/ArticleAdjacent'
@@ -334,6 +333,18 @@ const Layout404 = props => {
     // 延时3秒如果加载失败就返回首页
     setTimeout(() => {
       if (isBrowser) {
+        const article = document.getElementById('notion-article')
+        if (!article) {
+          router.push('/').then(() => {
+            // console.log('找不到页面', router.asPath)
+          })
+        }
+      }
+    }, 3000)
+  }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      if (isBrowser) {
         // 看是否是从老的博客跳转过来的
         const isFromOld = window.location.href.includes('/posts/')
         if (isFromOld) {
@@ -341,17 +352,10 @@ const Layout404 = props => {
             '/posts/',
             '/article/'
           )
-        } else {
-          const article = document.getElementById('notion-article')
-          if (!article) {
-            router.push('/').then(() => {
-              // console.log('找不到页面', router.asPath)
-            })
-          }
         }
       }
-    }, 3000)
-  })
+    }, 0)
+  }, [])
   return (
     <>
       <div className='text-black w-full h-screen text-center justify-center content-center items-center flex flex-col'>
@@ -373,38 +377,7 @@ const Layout404 = props => {
  * @param {*} props
  * @returns
  */
-const LayoutCategoryIndex = props => {
-  const { categoryOptions } = props
-  const { locale } = useGlobal()
-  return (
-    <div className='mt-8'>
-      <Card className='w-full min-h-screen'>
-        <div className='dark:text-gray-200 mb-5 mx-3'>
-          <i className='mr-4 fas fa-th' /> {locale.COMMON.CATEGORY}:
-        </div>
-        <div id='category-list' className='duration-200 flex flex-wrap mx-8'>
-          {categoryOptions?.map(category => {
-            return (
-              <Link
-                key={category.name}
-                href={`/category/${category.name}`}
-                passHref
-                legacyBehavior>
-                <div
-                  className={
-                    ' duration-300 dark:hover:text-white px-5 cursor-pointer py-2 hover:text-indigo-400'
-                  }>
-                  <i className='mr-4 fas fa-folder' /> {category.name}(
-                  {category.count})
-                </div>
-              </Link>
-            )
-          })}
-        </div>
-      </Card>
-    </div>
-  )
-}
+const LayoutCategoryIndex = props => {}
 
 /**
  * 标签列表
