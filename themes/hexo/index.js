@@ -334,11 +334,20 @@ const Layout404 = props => {
     // 延时3秒如果加载失败就返回首页
     setTimeout(() => {
       if (isBrowser) {
-        const article = document.getElementById('notion-article')
-        if (!article) {
-          router.push('/').then(() => {
-            // console.log('找不到页面', router.asPath)
-          })
+        // 看是否是从老的博客跳转过来的
+        const isFromOld = window.location.href.includes('/posts/')
+        if (isFromOld) {
+          window.location.href = window.location.href.replace(
+            '/posts/',
+            '/article/'
+          )
+        } else {
+          const article = document.getElementById('notion-article')
+          if (!article) {
+            router.push('/').then(() => {
+              // console.log('找不到页面', router.asPath)
+            })
+          }
         }
       }
     }, 3000)
