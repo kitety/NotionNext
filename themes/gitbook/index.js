@@ -3,6 +3,7 @@
 import Comment from '@/components/Comment'
 import { AdSlot } from '@/components/GoogleAdsense'
 import Live2D from '@/components/Live2D'
+import LoadingCover from '@/components/LoadingCover'
 import NotionIcon from '@/components/NotionIcon'
 import NotionPage from '@/components/NotionPage'
 import ShareBar from '@/components/ShareBar'
@@ -19,6 +20,7 @@ import ArticleAround from './components/ArticleAround'
 import ArticleInfo from './components/ArticleInfo'
 import { ArticleLock } from './components/ArticleLock'
 import BlogArchiveItem from './components/BlogArchiveItem'
+import BottomMenuBar from './components/BottomMenuBar'
 import Catalog from './components/Catalog'
 import CatalogDrawerWrapper from './components/CatalogDrawerWrapper'
 import CategoryItem from './components/CategoryItem'
@@ -26,8 +28,6 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import InfoCard from './components/InfoCard'
 import JumpToTopButton from './components/JumpToTopButton'
-import MobileButtonCatalog from './components/MobileButtonCatalog'
-import MobileButtonPageNav from './components/MobileButtonPageNav'
 import NavPostList from './components/NavPostList'
 import PageNavDrawer from './components/PageNavDrawer'
 import RevolverMaps from './components/RevolverMaps'
@@ -108,13 +108,17 @@ const LayoutBase = props => {
   const [pageNavVisible, changePageNavVisible] = useState(false)
   const [filteredNavPages, setFilteredNavPages] = useState(allNavPages)
 
-  const showTocButton = post?.toc?.length > 1
   const searchModal = useRef(null)
 
   useEffect(() => {
     setFilteredNavPages(getNavPagesWithLatest(allNavPages, latestPosts, post))
   }, [router])
 
+  const GITBOOK_LOADING_COVER = siteConfig(
+    'GITBOOK_LOADING_COVER',
+    true,
+    CONFIG
+  )
   return (
     <ThemeGlobalGitbook.Provider
       value={{
@@ -131,7 +135,7 @@ const LayoutBase = props => {
 
       <div
         id='theme-gitbook'
-        className={`${siteConfig('FONT_STYLE')} scroll-smooth bg-white dark:bg-hexo-black-gray w-full h-full min-h-screen justify-center dark:text-gray-300`}>
+        className={`${siteConfig('FONT_STYLE')} pb-16 md:pb-0 scroll-smooth bg-white dark:bg-hexo-black-gray w-full h-full min-h-screen justify-center dark:text-gray-300`}>
         <AlgoliaSearchModal cRef={searchModal} {...props} />
 
         {/* 顶部导航栏 */}
@@ -239,23 +243,13 @@ const LayoutBase = props => {
           )}
         </main>
 
-        {/* 移动端底部导航按钮 */}
-        <div className='bottom-button-group md:hidden w-screen h-12 px-4 fixed flex items-center justify-between right-0 bottom-0 z-30 bg-white border-l border-t dark:border-gray-800'>
-          <div className='w-full'>
-            <MobileButtonPageNav />
-          </div>
-          {showTocButton && (
-            <div className='w-full'>
-              <MobileButtonCatalog />
-            </div>
-          )}
-        </div>
+        {GITBOOK_LOADING_COVER && <LoadingCover />}
 
         {/* 移动端导航抽屉 */}
         <PageNavDrawer {...props} filteredNavPages={filteredNavPages} />
 
         {/* 移动端底部导航栏 */}
-        {/* <BottomMenuBar {...props} className='block md:hidden' /> */}
+        <BottomMenuBar {...props} />
       </div>
     </ThemeGlobalGitbook.Provider>
   )
