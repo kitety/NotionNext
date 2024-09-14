@@ -31,7 +31,7 @@ class MyDocument extends Document {
           )}
         </Head>
 
-        <body>
+        <body className='!top-0'>
           <Main />
           <NextScript />
         </body>

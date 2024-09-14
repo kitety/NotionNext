@@ -29,7 +29,7 @@ export function InfoCard(props) {
           alt={siteConfig('AUTHOR')}
         />
       </div>
-      <div className='font-medium text-center text-xl pb-4'>
+      <div className='font-medium text-center text-xl pb-4 notranslate'>
         {siteConfig('AUTHOR')}
       </div>
       <div className='text-sm text-center'>{siteConfig('BIO')}</div>
