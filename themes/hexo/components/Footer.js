@@ -1,6 +1,6 @@
+import LazyImage from '@/components/LazyImage'
 import { siteConfig } from '@/lib/config'
 import Poetry from './Poetry'
-import LazyImage from '@/components/LazyImage'
 
 const Footer = ({ title }) => {
   const d = new Date()

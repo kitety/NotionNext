@@ -160,7 +160,7 @@ const Header = props => {
 
           {/* 右侧功能 */}
           <div className='mr-1 flex justify-end items-center '>
-            <div className='hidden lg:flex'>
+            <div className='hidden lg:flex notranslate'>
               {' '}
               <MenuListTop {...props} />
             </div>
