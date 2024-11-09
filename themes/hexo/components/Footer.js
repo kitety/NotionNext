@@ -37,7 +37,7 @@ const Footer = ({ title }) => {
         <h1 className='text-xs pt-4 text-light-400 dark:text-gray-400'>
           {title} {siteConfig('BIO') && <>|</>} {siteConfig('BIO')}
         </h1>
-        <PoweredBy />
+        <div className='mx-auto flex justify-center'><PoweredBy /></div>
       </span>
       <br />
     </footer>

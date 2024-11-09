@@ -1,5 +1,7 @@
+import LazyImage from '@/components/LazyImage'
 import { useRequest } from 'ahooks'
 import axios from 'axios'
+
 
 const jinRiShiCiFetch = () =>
   axios.get(
@@ -17,6 +19,9 @@ const Poetry = () => {
   return <>
     {jinRiShiCiText && <p>{jinRiShiCiText}</p>}
     {hiToKoToText && <p>{hiToKoToText}</p>}
+    <div className='mx-auto'>
+      <LazyImage priority={false} src="https://www.flagcounter.me/dWO/" alt="Flag Counter" className="mx-auto" />
+    </div>
   </>
 }
 export default Poetry
