@@ -4,6 +4,11 @@ import PoweredBy from '@/components/PoweredBy'
 import { siteConfig } from '@/lib/config'
 import Poetry from './Poetry'
 
+const links = [
+  { name: 'Brainrot AI', link: 'https://brainrotai.net/' },
+  { name: 'Ghibli Image Generator', link: 'https://ghibliimagegenerator.com/' },
+  { name: 'Kolors Virtual Try On', link: 'https://kolors-virtual-try-on.com/' }
+]
 const Footer = ({ title }) => {
   const d = new Date()
   const currentYear = d.getFullYear()
@@ -22,7 +27,7 @@ const Footer = ({ title }) => {
           className='underline font-bold  dark:text-gray-300 '>
           {siteConfig('AUTHOR')}
         </a>
-        <Poetry/>
+        <Poetry />
         .<br />
         <BeiAnSite />
         <BeiAnGongAn />
@@ -37,7 +42,23 @@ const Footer = ({ title }) => {
         <h1 className='text-xs pt-4 text-light-400 dark:text-gray-400'>
           {title} {siteConfig('BIO') && <>|</>} {siteConfig('BIO')}
         </h1>
-        <div className='mx-auto flex justify-center'><PoweredBy /></div>
+        <div className='mx-auto flex justify-center'>
+          <PoweredBy />
+        </div>
+        <div className='text-xl flex justify-center items-center gap-2 mt-2'>
+          Supported by
+        </div>
+        <div className='flex justify-center items-center gap-2'>
+          {links.map(link => (
+            <a
+              target='_blank'
+              rel='nofollow noopener noreferrer'
+              href={link.link}
+              className='underline font-bold  dark:text-gray-300 '>
+              {link.name}
+            </a>
+          ))}
+        </div>
       </span>
       <br />
     </footer>
